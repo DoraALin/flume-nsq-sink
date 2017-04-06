@@ -12,7 +12,7 @@
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <slf4j.version>1.7.21</slf4j.version>
     <logback.version>1.1.7</logback.version>
-    <nsqsdk.version>2.3.20170406-RELEASE</nsqsdk.version>
+    <nsqsdk.version>2.2.20170406-RELEASE</nsqsdk.version>
     <pluginDir>./nsq-sink</pluginDir>
     <dependenciesOutputDir>${pluginDir}/libext</dependenciesOutputDir>
     <libOutputDir>${pluginDir}/lib</libOutputDir>
@@ -91,7 +91,7 @@
             <configuration>
               <includeScope>runtime</includeScope>
               <includeScope>compile</includeScope>
-              <excludeArtifactIds>log4j,slf4j-log4j</excludeArtifactIds>
+              <excludeArtifactIds>log4j,slf4j-log4j12</excludeArtifactIds>
               <outputDirectory>${dependenciesOutputDir}</outputDirectory>
             </configuration>
           </execution>

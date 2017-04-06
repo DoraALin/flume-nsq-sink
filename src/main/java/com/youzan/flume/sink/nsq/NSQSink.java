@@ -3,7 +3,6 @@ package com.youzan.flume.sink.nsq;
 import com.youzan.nsq.client.Producer;
 import com.youzan.nsq.client.ProducerImplV2;
 import com.youzan.nsq.client.entity.NSQConfig;
-import com.youzan.nsq.client.entity.Topic;
 import com.youzan.nsq.client.exception.NSQException;
 import org.apache.flume.*;
 import org.apache.flume.conf.Configurable;
@@ -19,14 +18,14 @@ public class NSQSink extends AbstractSink implements Configurable {
     private final static Logger logger = LoggerFactory.getLogger(NSQSink.class);
 
     private String lookupAddresses = null;
-    private Topic defaultTopic = null;
+    private String defaultTopic = null;
     private NSQConfig config = null;
     private Producer producer = null;
 
     @Override
     public Status process() throws EventDeliveryException {
         Status status;
-        Topic topic;
+        String topic;
         Channel ch = getChannel();
         Transaction txn = ch.getTransaction();
         txn.begin();
@@ -34,7 +33,7 @@ public class NSQSink extends AbstractSink implements Configurable {
             Event event = ch.take();
             String topicText = event.getHeaders().get("topic");
             if(null != topicText)
-                topic = new Topic(topicText);
+                topic = topicText;
             else
                 topic = defaultTopic;
             //send
@@ -78,9 +77,9 @@ public class NSQSink extends AbstractSink implements Configurable {
         if (null == topicName || topicName.isEmpty()) {
             throw new IllegalArgumentException("Illegal default topic name is not accepted. " + topicName);
         }
-        defaultTopic = new Topic(topicName);
-        config = new NSQConfig()
-                .setLookupAddresses(lookupAddresses);
+        defaultTopic = topicName;
+        config = new NSQConfig();
+        config.setLookupAddresses(lookupAddresses);
         logger.info("NSQConfig initialized with lookupAddresses:{}, topicName:{}", lookupAddresses, topicName);
     }
 }
