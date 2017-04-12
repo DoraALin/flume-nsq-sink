@@ -22,7 +22,7 @@ sink in conf file.
    # Describe the sink, type, topic, lookupAddresses are mandatory
    a1.sinks.nsq.type = com.youzan.flume.sink.nsq.NSQSink
    a1.sinks.nsq.topic = flume_sink
-   a1.sinks.nsq.lookupdAddresses = sqs-qa.s.qima-inc.com:4161
+   a1.sinks.nsq.lookupdAddresses = 127.0.0.1:4161
   
    # Use a channel which buffers events in memory
    a1.channels.c1.type = memory
