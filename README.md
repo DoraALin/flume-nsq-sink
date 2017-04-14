@@ -2,8 +2,8 @@
 
 [![GitHub release](https://img.shields.io/github/release/doraalin/flume-nsq-sink.svg)](https://github.com/doraalin/flume-nsq-sink/releases/latest)
 
-**flume-nsq-sink** is apache flume sink for port flume events to NSQ. Install as plugin and follow usecase to configure 
-sink in conf file.
+**flume-nsq-sink** is apache flume sink for port flume events to NSQ, with a local backup file tool to backup event body which failed in publish.
+ Install as plugin and follow usecase to configure sink in conf file.
   
 ## Installation and Usecase
 1. Run '_mvn package'_ to package plugin in path _./nsq-sink_. place folder in your ${FLUME_HOME}/plugin.d/
